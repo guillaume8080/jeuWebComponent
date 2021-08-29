@@ -13,27 +13,24 @@ export class DevinerNombre extends LitElement {
 
   static get properties() {
     return {
-      max: { type: Number },
-      nombreDeVie: { type: Number },
+      max: { attribute: true },
+      nombreDeVie: { attribute: true },
       nombreAlea: {type: Number},
       chaineInfo: {type: Text},
+
     };
   }
 
   constructor() {
     super();
-    this.max = 10;
-    this.nombreDeVie = 3;
     const nbInter = Math.random()*10;
     this.nombreAlea = Math.round(nbInter);
     this.chaineInfo = "";
   }
 
-  __increment() {
-    this.counter += 1;
-  }
 
   __go() {
+
 
     const input = this.shadowRoot.getElementById('saisie');
 

@@ -15,12 +15,10 @@
     import { html, render } from 'lit';
     import '../deviner-nombre.js';
 
-    const title = 'Hello owc World!';
+
     render(
       html`
-        <deviner-nombre .title=${title}>
-          some light-dom
-        </deviner-nombre>
+        <deviner-nombre  max="10" nombreDeVie="3"></deviner-nombre>
       `,
       document.querySelector('#demo')
     );
