@@ -33,12 +33,6 @@ export class DevinerNombre extends LitElement {
     this.counter += 1;
   }
 
-  __rejouer(){
-
-    alert("toto");
-
-  }
-
   __go() {
 
     const input = this.shadowRoot.getElementById('saisie');
@@ -49,29 +43,29 @@ export class DevinerNombre extends LitElement {
     if (saisie < this.nombreAlea) {
 
       this.nombreDeVie -= 1 ;
-      this.chaineInfo = saisie + " est trop petit !";
+      this.chaineInfo = `${saisie  } est trop petit !`;
 
     }
     if (saisie > this.nombreAlea) {
 
       this.nombreDeVie -= 1 ;
-      this.chaineInfo = saisie + " est trop grand !";
+      this.chaineInfo = `${saisie  } est trop grand !`;
 
     }
 
     if (saisie == this.nombreAlea){
 
-      this.chaineInfo = "trouvé !le nombre était bien : " + saisie ;
+      this.chaineInfo = `trouvé !le nombre était bien : ${  saisie}` ;
       const racine = this.shadowRoot;
       const buttonToDelete = racine.getElementById("goButton");
       const inputToDelete = racine.getElementById("saisie");
       buttonToDelete.remove();
       inputToDelete.remove();
 
-      //demarche insertion bouton
+      // demarche insertion bouton
       const btn = document.createElement("button");
       btn.innerHTML = "rejouer";
-      btn.onclick = function () {
+      btn.onclick = function redirect () {
         // le principe est redémarrer l'appli / component en rappelant l'url
         const url = window.location.href;
         window.location.replace(url);
@@ -81,6 +75,22 @@ export class DevinerNombre extends LitElement {
     }
     if ((saisie < this.nombreAlea && this.nombreDeVie == 0) || (saisie > this.nombreAlea && this.nombreDeVie == 0) ){
 
+      this.chaineInfo = `Perdu !le nombre était bien : ${  this.nombreAlea}` ;
+      const racine = this.shadowRoot;
+      const buttonToDelete = racine.getElementById("goButton");
+      const inputToDelete = racine.getElementById("saisie");
+      buttonToDelete.remove();
+      inputToDelete.remove();
+
+      // demarche insertion bouton
+      const btn = document.createElement("button");
+      btn.innerHTML = "rejouer";
+      btn.onclick = function redirect () {
+        // le principe est redémarrer l'appli / component en rappelant l'url
+        const url = window.location.href;
+        window.location.replace(url);
+      };
+      racine.appendChild(btn);
 
     }
 
@@ -90,8 +100,8 @@ export class DevinerNombre extends LitElement {
 
   render() {
 
-    const max = this.max;
-    const nombreDeVie = this.nombreDeVie;
+    const {max} = this;
+    const {nombreDeVie} = this;
     const nbAlea = this.nombreAlea;
     const indicationJeu = this.chaineInfo;
     return html`
