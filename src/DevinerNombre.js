@@ -7,6 +7,7 @@ export class DevinerNombre extends LitElement {
         display: block;
         padding: 25px;
         color: var(--deviner-nombre-text-color, #000);
+        font-family: Fantasy;
       }
     `;
   }
@@ -52,7 +53,7 @@ export class DevinerNombre extends LitElement {
 
     if (saisie === this.nombreAlea){
 
-      this.chaineInfo = `trouvé !le nombre était bien : ${  saisie}` ;
+      this.chaineInfo = `Trouvé !le nombre était : ${  saisie}` ;
       const racine = this.shadowRoot;
       const buttonToDelete = racine.getElementById("goButton");
       const inputToDelete = racine.getElementById("saisie");
@@ -72,7 +73,7 @@ export class DevinerNombre extends LitElement {
     }
     if ((saisie < this.nombreAlea && this.nombreDeVie === 0) || (saisie > this.nombreAlea && this.nombreDeVie === 0) ){
 
-      this.chaineInfo = `Perdu !le nombre était bien : ${  this.nombreAlea}` ;
+      this.chaineInfo = `Perdu !le nombre était: ${  this.nombreAlea}` ;
       const racine = this.shadowRoot;
       const buttonToDelete = racine.getElementById("goButton");
       const inputToDelete = racine.getElementById("saisie");
@@ -99,16 +100,20 @@ export class DevinerNombre extends LitElement {
 
     const {max} = this;
     const {nombreDeVie} = this;
-    const nbAlea = this.nombreAlea;
     const indicationJeu = this.chaineInfo;
-    return html`
-      <h1>Deviner nombre entre 0 et ${max} </h1>${nbAlea}
+    const imageVie = html`
 
-      <h2>Nombre de vie : ${nombreDeVie}</h2>
+      <img src="https://www.pxpng.com/public/uploads/preview/-11608720182nerzahgsbz.png"  alt="image de coeur" width='40' height='40' >
+
+    `;
+    return html`
+      <h1>Deviner nombre entre 0 et ${max} </h1>
+
+      <h2>Nombre de vies : ${nombreDeVie} ${imageVie}</h2>
+
       <br>
       <input id="saisie"  type="number" />
       <button id='goButton' @click="${this.__go}">OK</button>
-      <br>
       <p>${indicationJeu}</p>
 
 
