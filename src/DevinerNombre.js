@@ -101,15 +101,10 @@ export class DevinerNombre extends LitElement {
     const {max} = this;
     const {nombreDeVie} = this;
     const indicationJeu = this.chaineInfo;
-    const imageVie = html`
-
-      <img src="https://www.pxpng.com/public/uploads/preview/-11608720182nerzahgsbz.png"  alt="image de coeur" width='40' height='40' >
-
-    `;
     return html`
       <h1>Deviner nombre entre 0 et ${max} </h1>
 
-      <h2>Nombre de vies : ${nombreDeVie} ${imageVie}</h2>
+      <h2>Nombre de vies : ${nombreDeVie} </h2>
 
       <br>
       <input id="saisie"  type="number" />
