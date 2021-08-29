@@ -33,6 +33,12 @@ export class DevinerNombre extends LitElement {
     this.counter += 1;
   }
 
+  __rejouer(){
+
+    alert("toto");
+
+  }
+
   __go() {
 
     const input = this.shadowRoot.getElementById('saisie');
@@ -56,12 +62,26 @@ export class DevinerNombre extends LitElement {
     if (saisie == this.nombreAlea){
 
       this.chaineInfo = "trouvé !le nombre était bien : " + saisie ;
-      alert ("gagné")
+      const racine = this.shadowRoot;
+      const buttonToDelete = racine.getElementById("goButton");
+      const inputToDelete = racine.getElementById("saisie");
+      buttonToDelete.remove();
+      inputToDelete.remove();
+
+      //demarche insertion bouton
+      const btn = document.createElement("button");
+      btn.innerHTML = "rejouer";
+      btn.onclick = function () {
+        // le principe est redémarrer l'appli / component en rappelant l'url
+        const url = window.location.href;
+        window.location.replace(url);
+      };
+      racine.appendChild(btn);
 
     }
     if ((saisie < this.nombreAlea && this.nombreDeVie == 0) || (saisie > this.nombreAlea && this.nombreDeVie == 0) ){
 
-      alert("t es mort ");
+
     }
 
   }
@@ -80,7 +100,7 @@ export class DevinerNombre extends LitElement {
       <h2>Nombre de vie : ${nombreDeVie}</h2>
       <br>
       <input id="saisie"  type="number" />
-      <button @click="${this.__go}">OK</button>
+      <button id='goButton' @click="${this.__go}">OK</button>
       <br>
       <p>${indicationJeu}</p>
 
