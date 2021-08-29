@@ -33,8 +33,8 @@ export class DevinerNombre extends LitElement {
 
 
     const input = this.shadowRoot.getElementById('saisie');
-
-    const saisie = input.value;
+    const inputInter = input.value ;
+    const saisie = parseInt(inputInter,10);
 
 
     if (saisie < this.nombreAlea) {
@@ -50,7 +50,7 @@ export class DevinerNombre extends LitElement {
 
     }
 
-    if (saisie == this.nombreAlea){
+    if (saisie === this.nombreAlea){
 
       this.chaineInfo = `trouvé !le nombre était bien : ${  saisie}` ;
       const racine = this.shadowRoot;
@@ -70,7 +70,7 @@ export class DevinerNombre extends LitElement {
       racine.appendChild(btn);
 
     }
-    if ((saisie < this.nombreAlea && this.nombreDeVie == 0) || (saisie > this.nombreAlea && this.nombreDeVie == 0) ){
+    if ((saisie < this.nombreAlea && this.nombreDeVie === 0) || (saisie > this.nombreAlea && this.nombreDeVie === 0) ){
 
       this.chaineInfo = `Perdu !le nombre était bien : ${  this.nombreAlea}` ;
       const racine = this.shadowRoot;
